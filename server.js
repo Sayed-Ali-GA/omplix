@@ -7,6 +7,7 @@ const mongoose = require('mongoose')
 const session = require('express-session')
 const MongoStore = require('connect-mongo')
 const path = require('path')
+const listingController = require('./controllers/listing.controller')
 
 mongoose.connect(process.env.MONGODB_URI)
 mongoose.connection.on('connected', () => {
@@ -27,9 +28,13 @@ app.use(session({
     })
 }))
 
+app.get('/', (req, res) =>{
+    res.send('Do I work?')
+})
 
 
 
+app.use('/listings', listingController)
 
 
 const port = process.env.PORT ? process.env.PORT : "3000"
