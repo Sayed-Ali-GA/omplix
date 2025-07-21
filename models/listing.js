@@ -11,6 +11,7 @@ const commentSchema = new mongoose.Schema({
 
 const listingSchema = mongoose.Schema({
     title: String,
+    contact: String,
     description: String,
     price: Number,
     category: String,

@@ -3,11 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-     <link rel="stylesheet" href="/stylesheets/style.css">
-    <title>Create a New Listing</title>
+    <title>Document</title>
 </head>
 <body>
-    <form action="/listings" method="POST" class="container mt-4" enctype="multipart/form-data">
+       <form action="/listings/<%= foundListing._id %>?_method=PUT" method="POST">
   <h2 class="mb-4">Create a New Listing</h2>
 
   <div class="mb-3">
@@ -26,8 +25,8 @@
   </div>
 
   <div class="mb-3">
-    <label for=" contact">Phone Number:</label>
-    <input type="tel" name="contact" id="contact" placeholder="+973-1234-5678" />
+    <label for="phoneNumber">Phone Number:</label>
+    <input type="tel" name="phoneNumber" id="phoneNumber" placeholder="+973-1234-5678" />
   </div>
 
   <div class="mb-3">

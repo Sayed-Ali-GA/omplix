@@ -7,7 +7,11 @@ const mongoose = require('mongoose')
 const session = require('express-session')
 const MongoStore = require('connect-mongo')
 const path = require('path')
+const authController = require('./controllers/auth.controller')
 const listingController = require('./controllers/listing.controller')
+const isSignedIn = require('./middleware/is-signed-in')
+const passUserToView = require('./middleware/pass-user-to-view')
+const { title } = require('process')
 
 mongoose.connect(process.env.MONGODB_URI)
 mongoose.connection.on('connected', () => {
@@ -28,14 +32,19 @@ app.use(session({
     })
 }))
 
+app.use(passUserToView)
+
 app.get('/', (req, res) =>{
-    res.send('Do I work?')
+    res.render('index.ejs', {title: 'my App'})
 })
 
 
-
+app.use('/auth', authController)
 app.use('/listings', listingController)
 
+app.get('/vip-lounge', isSignedIn, (req, res) => {
+    res.send(`Welcome ✨`)
+})
 
 const port = process.env.PORT ? process.env.PORT : "3000"
 app.listen(port, () => {
