@@ -1,42 +1,46 @@
 <%- include('../partials/head') %>
-       <form action="/listings/<%= foundListing._id %>?_method=PUT" method="POST">
-  <h2 class="mb-4">Create a New Listing</h2>
 
-  
+<form action="/listings/<%= foundListing._id %>?_method=PUT" method="POST" class="container py-4" style="max-width: 600px;">
+  <h2 class="mb-4">Edit Listing</h2>
+
+  <div class="mb-3">
     <label for="title" class="form-label">Title:</label>
-    <input type="text" name="title" id="title" class="form-control" value="<%= foundListing.title %>" />
-  
-    <label for="description" class="form-label">Description:</label>
-    <textarea name="description" id="description" class="form-control" rows="3" required  ><%= foundListing.description%></textarea>
+    <input type="text" name="title" id="title" class="form-control" value="<%= foundListing.title %>" required />
+  </div>
 
+  <div class="mb-3">
+    <label for="description" class="form-label">Description:</label>
+    <textarea name="description" id="description" class="form-control" rows="3" required><%= foundListing.description %></textarea>
+  </div>
+
+  <div class="mb-3">
     <label for="price" class="form-label">Price: (BHD)</label>
     <input type="number" name="price" id="price" class="form-control" min="0" required value="<%= foundListing.price %>" />
- 
-    <label for="contact">Phone Number:</label>
-    <input type="tel" name="contact" id="contact" value="<%= foundListing.contact %>" />
+  </div>
 
-  
-    <label for="image" class="form-label">Upload an Image</label>
-     <img src="<%= foundListing.image.url %>" class="img-fluid rounded mb-3" alt="Image of <%= foundListing.title %>">
- 
+  <div class="mb-3">
+    <label for="contact" class="form-label">Phone Number:</label>
+    <input type="tel" name="contact" id="contact" class="form-control" value="<%= foundListing.contact %>" />
+  </div>
 
+  <div class="mb-3">
+    <label for="image" class="form-label">Current Image:</label><br />
+    <img src="<%= foundListing.image.url %>" class="img-fluid rounded mb-3" alt="Image of <%= foundListing.title %>">
+  </div>
 
- <div class="mb-3">
-  <label for="category" class="form-label">Select the Category:</label>
-  <select name="category" id="category" class="form-control" required <%= foundListing.category %>>
-  <option value="cars">Cars</option>
-  <option value="bikes">Bikes</option>
-  <option value="electronics">Electronics</option>
-  <option value="handmade">Handmade</option>
-  <option value="pets">Pets</option>
-  <option value="general">General</option>
-</select>
+  <div class="mb-3">
+    <label for="category" class="form-label">Select the Category:</label>
+    <select name="category" id="category" class="form-control" required>
+      <option value="cars" <%= foundListing.category === 'cars' ? 'selected' : '' %>>Cars</option>
+      <option value="bikes" <%= foundListing.category === 'bikes' ? 'selected' : '' %>>Bikes</option>
+      <option value="electronics" <%= foundListing.category === 'electronics' ? 'selected' : '' %>>Electronics</option>
+      <option value="handmade" <%= foundListing.category === 'handmade' ? 'selected' : '' %>>Handmade</option>
+      <option value="pets" <%= foundListing.category === 'pets' ? 'selected' : '' %>>Pets</option>
+      <option value="general" <%= foundListing.category === 'general' ? 'selected' : '' %>>General</option>
+    </select>
+  </div>
 
-</div>
-
-<a href="/listings/edit">
-    <button type="submit">Edit <%= foundListing.title %></button>
-</a>
+  <button type="submit" class="btn btn-primary mt-3">
+    Edit <%= foundListing.title %>
+  </button>
 </form>
-</body>
-</html>
