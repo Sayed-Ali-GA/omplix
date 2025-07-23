@@ -1,5 +1,5 @@
 🛍️ Omplix — Online Marketplace
-![Screenshot of Omplix ](Screenshot 2025-07-24 021333.png)
+![Screenshot of Omplix ](![alt text](image.png))
 
 📦 **Description**  
 A simple and user-friendly online marketplace built using Node.js, Express, MongoDB, and EJS.  
