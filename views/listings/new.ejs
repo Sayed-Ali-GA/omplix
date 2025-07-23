@@ -1,48 +1,51 @@
 <%- include('../partials/head') %>
-    <form action="/listings" method="POST" class="container mt-4" enctype="multipart/form-data">
-  <h2 class="mb-4">Create a New Listing</h2>
 
-  <div class="mb-3">
-    <label for="title" class="form-label">Title:</label>
-    <input type="text" name="title" id="title" class="form-control" required placeholder="Name of item" />
+<body style="background: linear-gradient(to right, #e6f0ff, #f2f6fc); min-height: 100vh;">
+  <div class="container py-5">
+    <div class="mx-auto shadow-lg p-5 rounded-4 bg-white" style="max-width: 700px;">
+      <h2 class="mb-4 text-center fw-bold text-primary">Create a New Listing</h2>
+
+      <form action="/listings" method="POST" enctype="multipart/form-data">
+        <div class="mb-3">
+          <label for="title" class="form-label">Title:</label>
+          <input type="text" name="title" id="title" class="form-control" required placeholder="Name of Listing" />
+        </div>
+
+        <div class="mb-3">
+          <label for="description" class="form-label">Description:</label>
+          <textarea name="description" id="description" class="form-control" rows="3" required placeholder="Add any details here..."></textarea>
+        </div>
+
+        <div class="mb-3">
+          <label for="price" class="form-label">Price (BHD):</label>
+          <input type="number" name="price" id="price" class="form-control" min="0" required placeholder="e.g. 250" />
+        </div>
+
+        <div class="mb-3">
+          <label for="contact" class="form-label">Phone Number:</label>
+          <input type="tel" name="contact" id="contact" class="form-control" placeholder="+973-1234-5678" />
+        </div>
+
+        <div class="mb-3">
+          <label for="image" class="form-label">Upload an Image:</label>
+          <input type="file" accept="image/*" name="image" id="image" class="form-control" required />
+        </div>
+
+        <div class="mb-4">
+          <label for="category" class="form-label">Select the Category:</label>
+          <select name="category" id="category" class="form-control" required>
+            <option value="cars">Cars</option>
+            <option value="bikes">Bikes</option>
+            <option value="electronics">Electronics</option>
+            <option value="handmade">Handmade</option>
+            <option value="pets">Pets</option>
+            <option value="general">General</option>
+          </select>
+        </div>
+
+        <button type="submit" class="btn btn-primary w-100 rounded-3">Create Listing</button>
+      </form>
+    </div>
   </div>
-
-  <div class="mb-3">
-    <label for="description" class="form-label">Description:</label>
-    <textarea name="description" id="description" class="form-control" rows="3" required placeholder="Add any details here..."></textarea>
-  </div>
-
-  <div class="mb-3">
-    <label for="price" class="form-label">Price: (BHD)</label>
-    <input type="number" name="price" id="price" class="form-control" min="0" required  placeholder="e.g. 250BD" />
-  </div>
-
-  <div class="mb-3">
-    <label for=" contact">Phone Number:</label>
-    <input type="tel" name="contact" id="contact" placeholder="+973-1234-5678" />
-  </div>
-
-  <div class="mb-3">
-    <label for="image" class="form-label">Upload an Image</label>
-    <input type="file" accept="image/*" name="image" id="image" class="form-control" required />
-  </div>
-
-   <!-- for Category -->
- <div class="mb-3">
-  <label for="category" class="form-label">Select the Category:</label>
-  <select name="category" id="category" class="form-control" required>
-  <option value="cars">Cars</option>
-  <option value="bikes">Bikes</option>
-  <option value="electronics">Electronics</option>
-  <option value="handmade">Handmade</option>
-  <option value="pets">Pets</option>
-    <option value="general">General</option>
-</select>
-
-</div>
-
-
-  <button type="submit" class="btn btn-primary">Create Listing</button>
-</form>
 </body>
 </html>

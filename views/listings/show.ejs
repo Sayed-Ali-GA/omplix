@@ -1,7 +1,7 @@
 <%- include('../partials/head') %>
 
 <div class="container my-5" style="max-width: 850px;">
-
+       <a href="/listings/" class="btn btn-outline-primary btn-lg rounded-3">← Back</a>
   <h1 class="mb-4 text-center" style="color: #1a73e8;">
     <%= foundListing.title %>
   </h1>
@@ -39,22 +39,23 @@
 
   <% if (user && foundListing.seller._id.equals(user._id)) { %>
     <div class="action-buttons">
-      <form action="/listings/<%= foundListing._id %>?_method=DELETE" method="POST" onsubmit="return confirm('Are you sure you want to delete this listing?');">
+      <form action="/listings/<%= foundListing._id %>?_method=DELETE" method="POST">
         <button type="submit" class="btn btn-outline-danger">Delete</button>
       </form>
       <a href="/listings/<%= foundListing._id %>/edit" class="btn btn-outline-warning">Edit</a>
     </div>
   <% } %>
 
-  <div class="listing-details">
-    <p><strong>Price:</strong> <span class="listing-price"><%= foundListing.price %> BHD</span></p>
-    <p><strong>Description:</strong><br><%= foundListing.description %></p>
-    <p><strong>Seller:</strong> <%= foundListing.seller.username %></p>
-    <p><strong>Mobile Number:</strong> <%= foundListing.contact %></p>
-  </div>
+<div class="listing-details text-muted small">
+  <p><strong class="text-dark">Price:</strong> <span class="listing-price"><%= foundListing.price %> BHD</span></p>
+  <p><strong class="text-dark">Description:</strong><br><%= foundListing.description %></p>
+  <p><strong class="text-dark">Seller:</strong> <%= foundListing.seller.username %></p>
+  <p><strong class="text-dark">Mobile Number:</strong> <%= foundListing.contact %></p>
+</div>
+
 
   <form action="/listings/<%= foundListing._id %>/wishlist" method="POST" class="d-flex justify-content-center mb-5">
-    <button type="submit" class="btn btn-warning shadow">♡ Add to Wishlist</button>
+    <button type="submit" class="btn btn-outline-info btn-lg rounded-3">♡ Add to Wishlist</button>
   </form>
 
   <h3 class="text-center mb-4 text-secondary">Add a Comment</h3>

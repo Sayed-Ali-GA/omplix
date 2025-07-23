@@ -1,46 +1,54 @@
 <%- include('./partials/head') %>
 
-<body style="background-color: #8686862f;">
+<body style="background: linear-gradient(to bottom right, #f0f4ff, #e6ecff); min-height: 100vh;">
   <div class="container d-flex justify-content-center align-items-center min-vh-100">
 
     <% if (user) { %>
-      <div class="border rounded-4 p-5 bg-white shadow text-center" style="max-width: 500px; width: 100%;">
-        <h2 class="mb-3">Welcome, <%= user.username %> 👋</h2>
-        <p class="mb-4 text-muted">You’re now signed in to Omplix.</p>
+    
+      <div class="bg-white border-0 rounded-4 shadow-sm p-5 text-center" style="max-width: 480px; width: 100%;">
+        <h2 class="mb-3 fw-bold text-dark">Welcome, <%= user.username %> 👋</h2>
+        <p class="mb-4 text-muted">You're now signed in to <span class="fw-semibold text-primary">Omplix</span>.</p>
 
         <div class="d-grid gap-3">
-          <a href="/listings/new" class="btn btn-success btn-lg">✚  Post a New Listing</a>
-          <a href="/listings/" class="btn btn-outline-primary btn-lg">🔎  See All Listings</a>
-          <a href="/listings/wishlist" class="btn btn-outline-danger btn-lg">♡ My Wishlist</a>
+          <a href="/listings/new" class="btn btn-primary btn-lg rounded-3">✚ Post a New Listing</a>
+          <a href="/listings/" class="btn btn-outline-primary btn-lg rounded-3">Browse Listings</a>
+          <a href="/listings/wishlist" class="btn btn-outline-info btn-lg rounded-3">♡ My Wishlist</a>
         </div>
       </div>
 
     <% } else { %>
-      <div class="card border-0 shadow-lg p-5 rounded-4" style="max-width: 500px; width: 100%;">
-        <h2 class="mb-4 text-center">Welcome to Omplix</h2>
+   
+      <div class="bg-white border-0 rounded-4 shadow-sm p-5 w-100" style="max-width: 460px;">
+        <div class="text-center mb-4">
+          <h2 class="fw-bold text-dark">Welcome to <span class="text-primary">Omplix</span></h2>
+          <p class="text-muted">Please sign in to continue</p>
+        </div>
 
         <form action="/auth/sign-in" method="POST">
-          <div class="mb-3">
-            <label for="username" class="form-label">Username</label>
-            <input type="text" name="username" id="username" class="form-control form-control-lg" required />
+          <div class="form-floating mb-3">
+            <input type="text" name="username" id="username" class="form-control rounded-3" placeholder="Username" required />
+            <label for="username">Username</label>
           </div>
 
-          <div class="mb-4">
-            <label for="password" class="form-label">Password</label>
-            <input type="password" name="password" id="password" class="form-control form-control-lg" required />
+          <div class="form-floating mb-4 position-relative">
+            <input type="password" name="password" id="password" class="form-control rounded-3" placeholder="Password" required />
+            <label for="password">Password</label>
+            <button type="button" class="btn btn-sm btn-light me-3"></button>
           </div>
 
-          <button type="submit" class="btn btn-danger w-100 btn-lg">Sign In</button>
+          <button type="submit" class="btn btn-primary w-100 py-2 fw-semibold rounded-3">Sign In</button>
         </form>
 
         <hr class="my-4" />
 
         <div class="text-center">
           <p class="mb-2 text-muted">Don’t have an account?</p>
-          <a href="/auth/sign-up" class="btn btn-outline-danger w-100 btn-lg">Create Account</a>
+          <a href="/auth/sign-up" class="btn btn-outline-primary w-100 py-2 rounded-3 fw-semibold">Create Account</a>
         </div>
       </div>
     <% } %>
   </div>
+
 </body>
 </html>
+

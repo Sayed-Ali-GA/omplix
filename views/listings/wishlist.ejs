@@ -1,33 +1,39 @@
 <%- include('../partials/head') %>
 
-<h1><%= user.username %>'s Wishlist :</h1>
+<body style="background: linear-gradient(to bottom right, #f0f4ff, #e6ecff); min-height: 100vh;">
+  <div class="container py-5">
+    <div class="text-center mb-5">
+      <h2 class="fw-bold text-dark"><%= user.username %>'s Wishlist ♡</h2>
+      <p class="text-muted">Here are the items you've added to your wishlist</p>
+    </div>
 
-<% if (wishlist.length === 0) { %>
-  <p>You have no items in your wishlist yet.</p>
-<% } else { %>
-  <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
-    <% wishlist.forEach(listing => { %>
-      <div class="col">
-        <div class="card h-100">
-          <img src="<%= listing.image.url %>" class="card-img-top" alt="<%= listing.title %>">
-          <div class="card-body">
-            <h5 class="card-title"><%= listing.title %></h5>
-            <p class="card-text"><%= listing.description %></p>
-            <p class="card-text"><strong><%= listing.price %> BHD</strong></p>
-            <a href="/listings/<%= listing._id %>" class="btn btn-primary">View Listing</a>
-            <form action="/listings/<%= listing._id %>/wishlist?_method=DELETE" method="POST">
-  <button type="submit" class="btn btn-danger">Remove from wishlist</button>
-</form>
-
-          </div>
-        </div>
+    <% if (wishlist.length === 0) { %>
+      <div class="text-center">
+        <p class="text-muted">You have no items in your wishlist yet.</p>
+        <a href="/listings" class="btn btn-outline-primary mt-3">Browse Listings</a>
       </div>
-    <% }) %>
+    <% } else { %>
+      <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+        <% wishlist.forEach(listing => { %>
+          <div class="col">
+            <div class="card h-100 border-0 shadow-sm rounded-4">
+              <img src="<%= listing.image.url %>" class="card-img-top rounded-top-4" alt="<%= listing.title %>">
+              <div class="card-body">
+                <h5 class="card-title fw-bold"><%= listing.title %></h5>
+                <p class="card-text text-muted"><%= listing.description %></p>
+                <p class="card-text fw-semibold text-primary"><%= listing.price %> BHD</p>
+                <div class="d-flex flex-column gap-2">
+                  <a href="/listings/<%= listing._id %>" class="btn btn-outline-primary btn-sm rounded-3">View Listing</a>
+                  <form action="/listings/<%= listing._id %>/wishlist?_method=DELETE" method="POST">
+                    <button type="submit" class="btn btn-outline-danger btn-sm rounded-3">🗑 Remove from wishlist</button>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        <% }) %>
+      </div>
+    <% } %>
   </div>
-<% } %>
-
-
- 
-
 </body>
 </html>

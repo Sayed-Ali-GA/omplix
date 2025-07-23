@@ -4,16 +4,16 @@ const Listing = require('../models/listing')
 const isSignedIn = require('../middleware/is-signed-in')
 const upload = require('../config/multer')
 const User = require('../models/user')
-//-------------------------------------------------------------------------------------------------------------------------------------------------
+
 router.get('/new', isSignedIn, (req, res) => {
     res.render('listings/new.ejs')
 })
-//------------------------------------------------------------------------
+
 router.get('/',isSignedIn, async  (req, res) => {
      const foundListings = await Listing.find()
     res.render('listings/index.ejs', { foundListings: foundListings })
 })
-//--------------------------------------------------------
+
 router.post('/', isSignedIn, upload.single('image'), async (req, res) => {
     try {
         req.body.seller = req.session.user._id
@@ -28,7 +28,7 @@ router.post('/', isSignedIn, upload.single('image'), async (req, res) => {
     }
 })
 
-// new for wishlist--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
 router.get('/wishlist', isSignedIn, async (req, res) => {
   try {
     const user = await User.findById(req.session.user._id).populate('wishlist')
@@ -37,7 +37,7 @@ router.get('/wishlist', isSignedIn, async (req, res) => {
     res.send(`Error loading wishlist, Please try again later:${user._id}`)
   }
 }) 
-//---------------------------------------------------------------------------------
+
 router.post('/:listingId/wishlist', isSignedIn, async (req, res) => {
   try {
     const user = await User.findById(req.session.user._id)
@@ -53,12 +53,12 @@ router.post('/:listingId/wishlist', isSignedIn, async (req, res) => {
     res.send(`Error adding to wishlist, Please try again later.${user._id}`)
   }
 })
-// finsh of wishlist-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
 router.get('/:listingId', async (req, res) => {
     const foundListing = await Listing.findById(req.params.listingId).populate('seller').populate('comments.author')
     res.render('listings/show.ejs', { foundListing: foundListing })
 })
-//try--------------------------------------------------------
+
 router.get('/:listingId/edit', async (req, res) => {
       const foundListing = await Listing.findById(req.params.listingId).populate('seller')
     
@@ -67,7 +67,7 @@ router.get('/:listingId/edit', async (req, res) => {
      }
      return res.send('Not authorized')   
 })
-//------------------------------------------------------------------------
+
 router.put('/:listingId', async (req, res) => {
      const foundListing = await Listing.findById(req.params.listingId).populate('seller')
 
@@ -77,7 +77,7 @@ router.put('/:listingId', async (req, res) => {
      }
      return res.send('Not authorized') 
 })
-//--------------------------------- Delete from mongoose ---------------------------------------
+  
 router.delete('/:listingId', async (req, res) => {
  const foundListing = await Listing.findById(req.params.listingId).populate('seller')
 if(foundListing.seller._id.equals(req.session.user._id)){
@@ -86,7 +86,7 @@ return res.redirect('/listings')
 }
  return res.send('Not authorized')
 })
-// ------------------------ remove from wishlist -----------------------------//
+
 router.delete('/:listingId/wishlist', isSignedIn, async (req, res) => {
   try {
     const user = await User.findById(req.session.user._id)
@@ -98,7 +98,7 @@ router.delete('/:listingId/wishlist', isSignedIn, async (req, res) => {
     res.send(`Error removing from wishlist, Please try again later:${user._id}`)
   }
 })
-//------------------------------------------------------------------------
+
 router.post('/:listingId/comments', isSignedIn, async (req, res) => {
     const foundListing = await Listing.findById(req.params.listingId)
     req.body.author = req.session.user._id
@@ -106,10 +106,10 @@ router.post('/:listingId/comments', isSignedIn, async (req, res) => {
     await foundListing.save()
     res.redirect(`/listings/${req.params.listingId}`)
 })
-//------------------------------------------------------------------------
+
 router.get('/', async (req, res) => {
     const foundListings = await Listing.find()
     res.render('listings/index.ejs', { foundListings: foundListings })
 })
-//------------------------------------------------------------------------
+
 module.exports = router 

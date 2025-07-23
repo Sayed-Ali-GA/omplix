@@ -1,20 +1,35 @@
 <%- include('../partials/head') %>
 
-<div class="container">
-  <h1>ِAll Listings</h1>
 
-  <div class="listings-grid">
+<div class="container py-5">
+  <h1 class="text-center mb-4 text-primary fw-semibold">All Listings</h1>
+
+  <div class="text-center mb-5">
+    <a href="/listings/new" class="btn btn-outline-primary rounded-pill px-4 py-2 shadow-sm">
+      ✚ Post a New Listing
+    </a>
+  </div>
+
+  <div class="listings-grid d-grid gap-4" style="grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));">
     <% foundListings.forEach((listing) => { %>
-      <div class="card-listing">
-        <img src="<%= listing.image.url %>" alt="Image of <%= listing.title %>" class="card-img" />
-        <div class="card-content">
-          <h3 class="card-title"><%= listing.title %></h3>
-          <span class="card-category"><%= listing.category %></span>
-          <p class="card-description"><%= listing.description %></p>
-          <div class="card-footer">
-            <div class="card-price"><%= listing.price %> BHD</div>
-            <a href="/listings/<%= listing._id %>" class="btn-view">View Listing</a>
-          </div>
+      <div class="card border-0 rounded-4 overflow-hidden shadow-lg"
+           style="background-color: #e9f1f6; transition: transform 0.2s ease, box-shadow 0.2s ease;">
+        <img 
+          src="<%= listing.image.url %>" 
+          alt="Image of <%= listing.title %>" 
+          class="card-img-top object-fit-cover" 
+          style="height: 200px;"
+        />
+        <div class="card-body">
+          <h5 class="card-title text-primary"><%= listing.title %></h5>
+          <span class="badge bg-light text-secondary mb-2"><%= listing.category %></span>
+          <p class="card-text text-muted">
+            <%= listing.description.length > 100 ? listing.description.slice(0, 100) + "..." : listing.description %>
+          </p>
+        </div>
+        <div class="card-footer bg-white d-flex justify-content-between align-items-center border-0">
+          <div class="fw-bold text-success"><%= listing.price %> BHD</div>
+          <a href="/listings/<%= listing._id %>" class="btn btn-sm btn-outline-primary rounded-pill">View</a>
         </div>
       </div>
     <% }) %>
