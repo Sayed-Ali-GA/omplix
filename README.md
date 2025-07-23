@@ -14,7 +14,7 @@ Get started now and discover what’s waiting for you! 🔍💬
 ---
 
 🚀 **Getting Started**  
-👉 Try it live: [Click here to visit Omplix](#https://omplix-ba2d0cff3925.herokuapp.com/)  
+👉 Try it live: [Visit Omplix](https://omplix-ba2d0cff3925.herokuapp.com) 
 
 👉 **Main Features:**
 - Sign up & Log in
