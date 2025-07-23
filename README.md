@@ -9,12 +9,12 @@ Omplix is your go-to platform for browsing and posting listings with ease.
 Explore available items, connect with sellers, and share your own products with others.
 With Omplix, buying and selling is faster, simpler, and more enjoyable.
 
-Get started now and discover what’s waiting for you! 🔍💬
+Get started now and discover what’s waiting for you
 
 ---
 
 🚀 **Getting Started**  
-👉 Try it live: [https://omplix-ba2d0cff3925.herokuapp.com/](#)  
+👉 Try it live: [https://omplix-ba2d0cff3925.herokuapp.com](#)  
 
 👉 **Main Features:**
 - Sign up & Log in
