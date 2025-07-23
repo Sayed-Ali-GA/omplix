@@ -1,23 +1,52 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/stylesheets/style.css">
-    <title>show page</title>
-</head>
-<body>
+<%- include('../partials/head') %>
+
     <h1><%= foundListing.title %></h1>
      <img src="<%= foundListing.image.url %>" class="img-fluid rounded mb-3" alt="Image of <%= foundListing.title %>">
-    
+    <% if (foundListing.seller._id.equals(user._id)) { %>
+    <div class="d-flex justify-content-between mb-4">
+      <form action="/listings/<%= foundListing._id %>?_method=DELETE" method="POST">
+        <button type="submit" class="btn btn-danger">Delete</button>
+      </form>
+      <a href="/listings/<%= foundListing._id %>/edit" class="btn btn-warning">Edit</a>
+    <form action="/listings/<%= foundListing._id %>/wishlist" method="POST">
+ <form action="/:listingId/<%= foundListing._id %>/wishlist" method="POST">
+  
+</form>
+
+</form>
+
+    </div>
+  <% } %>
+
     <p><strong>Price: </strong><%= foundListing.price %> (BHD)</p>
     <p><strong>Description: </strong><%= foundListing.description %></p>
     <p><strong>Seller: </strong><%= foundListing.seller.username %></p>
-    <p><strong>Mobile Number: </strong><%= foundListing.content %></p>
-   
+    <p><strong>Mobile Number: </strong><%= foundListing.contact %></p>
+     
+<h3 class="text-center">Add a Comment</h3>
+  <form action="/listings/<%= foundListing._id %>/comments" method="POST" class="mb-4">
+    <div class="mb-3">
+      <textarea name="content" class="form-control" rows="3" required></textarea>
+    </div>
+    <button type="submit" class="btn btn-primary">Post Comment</button>
+  </form>
+
+  <h3 class="text-center">All Comments</h3>
+  <ul class="list-group">
+    <% foundListing.comments.forEach((comment) => { %>
+      <li class="list-group-item">
+      <%= comment.author.username %>:- <em><%= comment.content %></em>
+      </li>
+    <% }) %>
+  </ul>
+</div>
+
+<form action="/listings/<%= foundListing._id %>/wishlist" method="POST">
+  <button type="submit" class="btn btn-warning">Add to wishlist</button>
+</form>
 
 
- 
+
 
 </body>
 </html>

@@ -1,34 +1,27 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/stylesheets/style.css">
-    <title>Listings</title>
-</head>
-<body>
-  
-    <div class="container mt-4">
-  <h1 class="text-center mb-4">Marketplace Listings</h1>
+<%- include('../partials/head') %>
 
-  <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+
+
+<div class="container">
+  <h1>ِAll Listings</h1>
+
+  <div class="listings-grid">
     <% foundListings.forEach((listing) => { %>
-      <div class="col">
-        <div class="card h-100">
-          <img src="<%= listing.image.url %>" class="card-img-top" alt="Image of <%= listing.title %>">
-          <div class="card-body">
-            <h5 class="card-title"><%= listing.title %></h5>
-            <p class="card-text"><%= listing.description %></p>
-            <p class="card-text"><strong><%= listing.price %> BHD</strong></p>
-             <p class="card-cgt"><strong><%= listing.category %></strong></p>
-            <a href="/listings/<%= listing._id %>" class="btn btn-primary">View Listing</a>
+      <div class="card-listing">
+        <img src="<%= listing.image.url %>" alt="Image of <%= listing.title %>" class="card-img" />
+        <div class="card-content">
+          <h3 class="card-title"><%= listing.title %></h3>
+          <span class="card-category"><%= listing.category %></span>
+          <p class="card-description"><%= listing.description %></p>
+          <div class="card-footer">
+            <div class="card-price"><%= listing.price %> BHD</div>
+            <a href="/listings/<%= listing._id %>" class="btn-view">View Listing</a>
           </div>
         </div>
       </div>
     <% }) %>
   </div>
 </div>
-
 
 </body>
 </html>

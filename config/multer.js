@@ -5,7 +5,7 @@ const cloudinary = require('./cloudinary')
 const storage = new CloudinaryStorage({
     cloudinary: cloudinary,
     params: {
-        folder: 'marketplace-listing',
+        folder: 'omplix-listing',
         allowed_formats: ['jpg', 'jpeg', 'png']
     }
 })

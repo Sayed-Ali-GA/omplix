@@ -1,26 +1,46 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
- 
-<% if (user) { %>
-<h1>Welcome to the app, <%= user.username %>!</h1>
-<a href="/auth/sign-out">Sign out</a>
-<a href="/listings/new">Add a Listing</a>
-<a href="/listings/">View All Listing</a>
+<%- include('./partials/head') %>
 
-<% } else { %>
+<body style="background-color: #8686862f;">
+  <div class="container d-flex justify-content-center align-items-center min-vh-100">
 
-<p>
-  <h1>Welcome to Omplix </h1>
-  <a href="/auth/sign-up">Sign up</a> or <a href="/auth/sign-in">sign in</a>.
-</p>
-<% } %>
+    <% if (user) { %>
+      <div class="border rounded-4 p-5 bg-white shadow text-center" style="max-width: 500px; width: 100%;">
+        <h2 class="mb-3">Welcome back, <%= user.username %> 👋</h2>
+        <p class="mb-4 text-muted">You’re now signed in to Omplix.</p>
 
+        <div class="d-grid gap-3">
+          <a href="/listings/new" class="btn btn-success btn-lg">✚  Post a New Listing</a>
+          <a href="/listings/" class="btn btn-outline-primary btn-lg">🔎  See All Listings</a>
+          <a href="/listings/wishlist" class="btn btn-outline-danger btn-lg">♡ My Wishlist</a>
+        </div>
+      </div>
 
+    <% } else { %>
+      <div class="card border-0 shadow-lg p-5 rounded-4" style="max-width: 500px; width: 100%;">
+        <h2 class="mb-4 text-center">Welcome to Omplix</h2>
+
+        <form action="/auth/sign-in" method="POST">
+          <div class="mb-3">
+            <label for="username" class="form-label">Username</label>
+            <input type="text" name="username" id="username" class="form-control form-control-lg" required />
+          </div>
+
+          <div class="mb-4">
+            <label for="password" class="form-label">Password</label>
+            <input type="password" name="password" id="password" class="form-control form-control-lg" required />
+          </div>
+
+          <button type="submit" class="btn btn-danger w-100 btn-lg">Sign In</button>
+        </form>
+
+        <hr class="my-4" />
+
+        <div class="text-center">
+          <p class="mb-2 text-muted">Don’t have an account?</p>
+          <a href="/auth/sign-up" class="btn btn-outline-danger w-100 btn-lg">Create Account</a>
+        </div>
+      </div>
+    <% } %>
+  </div>
 </body>
 </html>

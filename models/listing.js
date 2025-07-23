@@ -30,4 +30,4 @@ const listingSchema = mongoose.Schema({
 
 
 
-module.exports = mongoose.model('Listings',listingSchema)
+module.exports = mongoose.model('Listing',listingSchema)

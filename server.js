@@ -38,9 +38,10 @@ app.get('/', (req, res) =>{
     res.render('index.ejs', {title: 'my App'})
 })
 
-
 app.use('/auth', authController)
 app.use('/listings', listingController)
+
+
 
 app.get('/vip-lounge', isSignedIn, (req, res) => {
     res.send(`Welcome ✨`)
